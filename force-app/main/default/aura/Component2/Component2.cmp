@@ -1,0 +1,23 @@
+<aura:component controller="createOrderFromWonOpprotunityController">
+<aura:attribute name="recordId" type="String"/>
+<aura:attribute name="shouldContinue" type="Boolean"/>
+<aura:attribute name="errorCheck" type="List" />
+<pre>
+     under child : 
+     recordId = {!v.recordId}
+     shouldContinue = {!v.shouldContinue}
+</pre>
+<aura:if isTrue="{!v.shouldContinue}">
+   <div class="slds-grid slds-grid--align-spread">
+       You are about to convert the current Opportunity to an Order.<br/>
+       If you are ready, Please click on "Confirm" button below<br/>
+       <lightning:button label="Confirm" onclick="{!c.doSubmit}" class="slds-m-top--medium" />
+   </div>
+   <aura:set attribute="else">
+       <p>Sorry you can not convert the current Opportunity to an Order for the following reason.</p>
+       <aura:iteration items="{!v.errorCheck}" var="item">
+           <span style="color: red;"> - {!item}</span>
+       </aura:iteration>
+   </aura:set>
+</aura:if>
+</aura:component>

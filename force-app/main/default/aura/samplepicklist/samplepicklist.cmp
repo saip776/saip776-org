@@ -1,0 +1,15 @@
+<aura:component>
+    
+    <aura:attribute name="colors" type="String[]"/>
+    <aura:attribute name="selectedColor1" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadOptions}" />
+    
+    <lightning:select aura:id="select1-id" value="{!v.selectedColor1}" onchange="{!c.onChangeColor}" name="picklist1" label="Select a Color"  >
+        <option value="">-- None --</option>
+        <aura:iteration items="{!v.colors}" var="color">
+            <option value="{!color.value}" text="{!color.label}"></option>
+        </aura:iteration>
+    </lightning:select>
+    
+</aura:component>

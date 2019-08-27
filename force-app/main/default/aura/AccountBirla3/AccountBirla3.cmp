@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:attribute name="passingval" type="string" default="default value"/>
+    the value came from Account Birla 2 to Account Birla 3...{!v.passingval}
+    <aura:handler name="change" value="{!passingval}" action="{!onreceiving}" />
+</aura:component>

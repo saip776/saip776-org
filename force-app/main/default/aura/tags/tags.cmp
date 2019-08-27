@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable" controller ="contactRegistrationController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="options" type="List" access="PRIVATE"/>
+    <lightning:select name="select1" label="select val" aura:id="abc" required="true"
+                      onchange="{!c.getPicklistValues}">
+        <aura:iteration items="{!v.options}" var="option">
+             <!--<option text="{!option.Name}" value="{!option.Name}" />-->
+            <ui:inputSelectOption text="{!option.Name}" value="{!option.Name}"/>
+        </aura:iteration>
+        
+        <!--<option value="">choose one...</option>
+        <option value="1">one</option>
+        <option value="2">two</option>
+        <option value="3">three</option>
+        <ui:inputSelectOption text="Any"/>
+            <ui:inputSelectOption text="Open" value="true"/>
+            <ui:inputSelectOption text="Closed"/>
+            <ui:inputSelectOption text="Closed Won"/>
+        	<ui:inputSelectOption text="Prospecting"/>
+            <ui:inputSelectOption text="Qualification"/>
+            <ui:inputSelectOption text="Needs Analysis"/>
+            <ui:inputSelectOption text="Closed Lost"/>-->
+    </lightning:select>
+
+     
+</aura:component>

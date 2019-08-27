@@ -1,0 +1,92 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="lightning" >
+
+    <aura:handler value="{!this}" name="init" action="{!c.myAction}"/>
+    <aura:handler value="{!this}" name="init" action="{!c.myActioned}"/>
+    <aura:handler value="{!this}" name="init" action="{!c.myActions}"/>
+    <aura:handler value="{!this}" name="init" action="{!c.myActor}"/>
+    <aura:handler value="{!this}" name="init" action="{!c.startmethodput}"/>
+    <!--<aura:handler value="{!this}" name="init" action="{!c.startmethodput2}"/>-->
+    
+    <aura:attribute name="displayname" type="string" default="defaultvalue"/>
+    <aura:attribute name="truckname" type="string" default="defaultvalue"/>
+     <aura:attribute name="truckname1" type="List" />
+    <aura:attribute name="mapdata" type="list" />
+ <!--   <aura:attribute name="searchtext" type="list" />-->
+    
+    <aura:attribute name="firstname" type="string" default=""/>
+    <aura:attribute name="emailaddress" type="string" default=""/>
+    
+    <aura:attribute name="dynsearch" type="Object[]" />
+   
+     
+  <!--  <aura:iteration items="{!v.truckname1}" var="item">
+        {!item.Name}<br/>
+  </aura:iteration>
+    <aura:iteration items="{!v.mapdata}" var="k" indexVar="i">
+        {!k.key}<br/> {!k.value}
+  </aura:iteration> -->
+    
+     <!--<ui:inputtext label="first name" value="{!v.firstname}" aura:id="fname"  updateOn="keyup"/>
+     <ui:inputtext label="email address" value="{!v.emailaddress}" aura:id="emale" updateOn="keyup" />
+    the values updated are 
+    {!v.firstname}<br/>
+    {!v.emailaddress}
+    
+    <lightning:button variant="brand" label="test" onclick="{!c.startmethodput}" /> -->
+    
+    <!-- abc -->
+   <aura:attribute name="searchtext" type="string" />
+    
+    
+    <ui:inputtext label="search text" value="{!v.searchtext}" aura:id="stext"  updateOn="keyup" keyup="{!c.startmethodput2}"/>
+    
+    <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+    <tbody>
+     <!-- <th scope="col"><div class="slds-truncate" title="ID1">Key</div></th> -->
+    <th  scope="col"> <div class="slds-truncate" title="ID1"> Name</div></th>
+    <th  scope="col"><div class="slds-truncate" title="ID1"> Brand</div></th>
+    <th scope="col"><div class="slds-truncate" title="ID1"> Color</div></th>
+    <th scope="col"><div class="slds-truncate" title="ID1"> Favorite</div></th>
+    <th scope="col"><div class="slds-truncate" title="ID1"> Delete</div></th>
+
+     <aura:iteration items="{!v.dynsearch}" var="sai">
+         <tr class="slds-text-title_caps">
+             <td class="slds-truncate" >
+        {!sai.Name}<br/>
+                 </td>
+             <td class="slds-truncate" >
+         {!sai.Brand__c}<br/>
+             </td>
+             <td class="slds-truncate" >
+         {!sai.Color__c}<br/>
+         </td>
+             <td class="slds-truncate" title="company" > <a ></a>
+        <br/>
+         </td>
+             
+             <td class="slds-truncate">
+             <lightning:icon class="slds-truncate" iconName="custom:custom1" size="large" />
+                 
+             </td >
+             <td class="slds-truncate">
+             <lightning:button
+                            label="Delete"
+                            iconName="utility:delete"
+                            iconPosition="left"
+                            variant="destructive"
+                            type="submit" />
+             </td >
+             </tr>
+         </aura:iteration>
+        </tbody>
+         </table>
+  
+    <!-- <lightning:button variant="brand" label="search trucks" onclick="{!c.startmethodput2}" /> -->
+    
+    
+    
+    
+    
+    
+    
+</aura:component>

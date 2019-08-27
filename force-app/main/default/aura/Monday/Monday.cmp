@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable">
+
+    <!--header-->
+    <div class="slds-page-header" role="banner">
+        <div class="slds-grid" >
+        <div class="slds-col" >
+            <p class="slds-text-heading--label"> Contacts View based on Email</p>
+            <h1 class="slds-text-heading--medium"> Contacts with Email</h1>
+            </div>
+        </div>
+    </div>
+    <!--/header-->
+    
+    <div class="slds-col slds-col--padded slds-p-top--large ">
+    <div aria-labelledby="Contacts with Email">
+        </div>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,24 @@
+<aura:component controller="AccountController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="columns" type="list" />
+    <aura:attribute name="data" type="Object" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}"/>
+    
+    <div style="height: 300px">
+        <lightning:datatable
+            columns="{! v.columns }"
+            data="{! v.data }"
+            keyField="id"
+            onrowaction="{! c.handleRowAction }"
+            onheaderaction="{! c.handleHeaderAction }"/>
+    </div>
+    <lightning:recordEditForm 
+
+                              recordId="0017F00001mw8RcQAI"
+                              objectApiName="Account">
+        
+        <lightning:inputField aura:id="form" fieldName="ParentId" variant="label-hidden" onchange="{!c.handle}"/>
+    </lightning:recordEditForm>
+    
+    <!-- lightning:button label="submit" onclick="{!c.handle}"/ -->
+</aura:component>

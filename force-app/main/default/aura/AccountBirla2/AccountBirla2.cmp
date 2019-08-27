@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="searchtext" type="string"/>
+    <ui:inputtext label="search text" value="{!v.searchtext}" aura:id="stext"  updateOn="keyup"/>
+    <c:AccountBirla3 passingval="{!v.searchtext}"/>
+</aura:component>

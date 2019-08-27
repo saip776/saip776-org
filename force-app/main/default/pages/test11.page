@@ -1,0 +1,121 @@
+<apex:page >
+ 
+ <script>
+ function firstfun()
+ {
+     var a = "abcd";
+     var n = "efgh";
+     console.log(n);
+     var arr= ["car","red car","blue car",100,111];
+     console.log(arr);
+     var acd = new Array("ball","bat");
+     console.log(acd);
+     
+     arr[5] = 200;
+      console.log(arr);
+       console.log(arr.length);
+     
+     
+ }
+ 
+ function parahelp()
+
+{
+    console.log('this is para');
+}
+
+function onload()
+{
+    console.log('just written for onload');
+    
+}
+
+function testalert()
+{
+    alert('alert message');
+}
+
+function reloadpage()
+{
+    location.reload();
+}
+
+function facebook()
+{
+    window.location.href = "https://www.youtube.com/";
+}
+
+function Windowopen()
+{
+    window.open("Https://www.facebook.com");
+}
+
+function confirmbox()
+{
+   var c = confirm('are you sure to confirm message');
+   console.log(c);
+}
+
+
+function hidediv()
+{
+    var divbody = document.getElementById("hidedemo");
+    
+    console.log(divbody);
+    divbody.style.display = "none";
+}
+
+function showme()
+{
+    var divbody = document.getElementById("showdemo");
+    
+    console.log(divbody);
+    divbody.style.display = "block";
+}
+
+function showdetails()
+{
+    var name = document.getElementById("name1").value;
+    var email = document.getElementById("email1").value;
+    var bod = document.getElementById("details");
+      bod.innerHTML = 'Provided Details are my name is '+name+' and my email is '+email;  
+  
+}
+
+ </script>
+ 
+ <body>
+ Demo for using JS in VF
+ 
+ <input type="button" name="clickHere" value="Clickme" onclick="firstfun();" />
+ <input type="button" name="alert" value="alert is here" onclick="testalert();" />
+ <input type="button" name="reload" value="reload" onclick="reloadpage();" />
+ <input type="button" name="confirm" value="confirm" onclick="confirmbox();" />
+ <input type="button" name="youtube" value="youtube" onclick="facebook();" />
+ <input type="button" name="hidedemo" value="hidedemo" onclick="hidediv();" />
+ <input type="button" name="showdata" value="show data" onclick="showme();" />
+ <input type="button" name="showdetails" value="details" onclick="showdetails();" />
+
+ 
+ <input type="button" name="facebook" value="open facebook" onclick="Windowopen();" />
+ 
+ 
+ <input type="text" name="email"  id="email1" />
+ 
+  <input type="text" name="email"  id="name1" />
+  
+ <div id="details"> my details </div>
+ 
+ <div onmouseover="parahelp();"> this is paragraph
+ </div>
+ 
+ <div Id="hidedemo" style="block">
+ i want to get hidden </div>
+ 
+ <div Id="showdemo" style="display:none">
+ i want to get shown</div>
+ 
+ 
+ 
+ </body>
+</apex:page>

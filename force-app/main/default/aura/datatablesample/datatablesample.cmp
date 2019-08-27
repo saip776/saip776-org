@@ -1,0 +1,68 @@
+<aura:component controller="Acclist1" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	    <!-- backing data -->
+    <aura:attribute name="data" type="List" />
+    <!-- Attribute Declration For Pagination -->
+   <aura:attribute name="isSending" type="boolean" />
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="5"/>
+    <!-- Attribute Declration For Pagination End-->
+    
+
+    <!-- data table attributes -->
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="filteredData" type="List" />
+    <aura:attribute name="sortedBy"
+                    type="String" />
+    <aura:attribute name="sortedDirection"
+                    type="Boolean"
+                    default="true" />
+
+    <!-- filter input -->
+    <aura:attribute name="filter" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <lightning:input type="text" onchange="{!c.filter}" value="{!v.filter}" label="Filter" />
+     <!-- Spinner Start, show the loading screen while 
+		 Client side controller(JS) is communicating with Server Side(APEX) controller -->
+    <aura:if isTrue="{!v.isSending}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!-- Spinner End -->
+    <lightning:datatable keyField="name" sortedBy="{!v.sortedBy}" 
+                         sortedDirection="{!v.sortedDirection}" columns="{!v.columns}" 
+                         data="{!v.filteredData}" onsort="{!c.updateColumnSorting}"/>
+  <br/>
+   <div class="slds-text-title color"> Showing {!v.startPage +1}  to {!v.endPage +1} of {!v.totalRecords} records.</div>
+    <div class="slds-form-element slds-size_1-of-2 slds-grid slds-grid_vertical-align-center">
+
+                                <lightning:select name="Form Type" label="Select Records size"  aura:id="pageSizeChange" value="{!v.pageSize}" onchange="{!c.handlePageSize}">
+									
+                                    <option  value="5">5</option>
+                                    <option  value="10">10</option>
+
+                                    <option  value="25">25</option>
+                                    <option  value="50">50</option>
+                                    <option  value="100">100</option>
+
+                                </lightning:select>
+
+                            </div>
+    <lightning:buttonGroup class="slds-align_absolute-center" >
+            <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
+                              onclick="{!c.previous}" variant="brand"
+                              iconName='utility:back'/>
+            &nbsp; &nbsp; &nbsp;
+            <lightning:button label="Next" disabled="{!v.endPage >= v.totalRecords}" 
+                              onclick="{!c.next}" variant="brand"
+                              iconName='utility:forward' iconPosition='right'/>
+        </lightning:buttonGroup>
+</aura:component>

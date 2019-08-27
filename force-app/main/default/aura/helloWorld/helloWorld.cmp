@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+	<aura:attribute name="con2" type="Contact" default="{ 'sobjectType': 'Contact'}"/>
+    
+    
+  <!--  <ui:outputRichText class="slds-text-longform" value="{!v.con2.Rich_Text__c}"/> -->
+      <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Contact">
+        <div class="slds-box" >
+
+            <lightning:outputField aura:id="Richcopy" fieldName="Rich_Text__c" />
+        </div>
+      <lightning:button variant="brand" label="Copy" iconName="utility:copy_to_clipboard" 
+                        iconPosition="left" onclick="{!c.copy}" />     
+    </lightning:recordViewForm>
+    <input name="input" id="rich" value="hello sai"/>
+    
+</aura:component>

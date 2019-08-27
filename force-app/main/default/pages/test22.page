@@ -1,0 +1,48 @@
+<apex:page lightningStyleSheets="true" >
+    
+     <script>
+  
+
+function showdetails()
+{
+    var name = document.getElementById("name1").value;
+    var email = document.getElementById("email1").value;
+    var address = document.getElementById("address1").value;
+    var web = document.getElementById("site1").value;
+    var bod = document.getElementById("details");
+    debugger;
+      bod.innerHTML = 'Provided Details are my name is '+name+
+          ' and my email is '+email+
+      		'address is '+address+ 
+          'website :'+web;  
+    
+    var c = confirm('are you sure to redirect to website');
+    if (c)
+        {
+           window.open(web);
+        }
+    else
+        {
+        	location.reload();
+        }
+  
+}
+    
+    function confirmbox()
+{
+   
+}
+    </script>
+    <body> <b><i> Company Information </i></b><br> </br>
+        Name:    <input type="text" name="email"  id="email1" /><br> </br>
+  		Email: 	 <input type="text" name="name"  id="name1" />   <br> </br>
+        Address: <input type="text" name="address"  id="address1" />   <br> </br>
+        Website: <input type="text" name="site"  id="site1" /><br> </br>
+    	click here to review : <input type="button" name="showdetails" value="click here" onclick="showdetails();" />
+		
+    </body>
+    
+    <p>
+        <span id="details"> my details </span></p>
+    
+</apex:page>

@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recname" type="string"/>
+    <ui:inputText label="name" value="{!v.recaname}" aura:id="tname"/><br/>
+    <ui:outputText  value="myoutput" /><br/>
+    <ui:inputSelect aura:id="spacelist">
+         <ui:inputSelectOption label="--None--"/>
+    <ui:inputSelectOption label="item1"/>
+    <ui:inputSelectOption label="item2"/>
+        </ui:inputSelect>
+    <ui:inputDate aura:id="dateval" label="select your birthday" displayDatePicker="true"/>
+    
+    <ui:spinner aura:id="spinwheel"/>
+    <ui:button press="{!c.stopspin}" label="Hide Spin" />
+</aura:component>

@@ -1,0 +1,19 @@
+<aura:component controller="testPracticeClass" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="record" type="Map" />
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <aura:handler name="testpracticeEvent" event="c:testpracticeEvent" action="{!c.handleEvent}" />
+    
+    <lightning:card title="Parent" iconName="standard:account" >
+        <div class="slds-p-around_small">
+            <c:testpracticeParent record ="{!v.record}" />
+        </div>
+        <div class="slds-p-around_small">
+            Name: <lightning:formattedText value="{!v.record.Name}" /><br/>
+            Email: <lightning:formattedText value="{!v.record.Email}" /><br/>
+            Phone: <lightning:formattedText value="{!v.record.Phone}" /><br/>
+            <!-- lightning:formattedText value="{!v.record.name}" /--> 
+        </div>
+    </lightning:card>
+    
+    
+</aura:component>

@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller = "geics" >
+	
+<h1 class="slds-section-title--divider">Section Information</h1>
+<img  src="{!v.Product.Image__c}"  alt="Placeholder"/>
+    <div class="slds-form-element">
+  <span class="slds-form-element__label">NAME :</span>
+            <span class="slds-form-element__static">In Progress</span>
+        
+
+ 
+    </div>
+</aura:component>

@@ -1,0 +1,11 @@
+<aura:component controller="Acclist1" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <!--ltng:require styles="{!$Resource.ICS_Claim_SP_Style}" /-->
+    <aura:attribute name="filteredData" type="List"/>
+     <aura:attribute name="columns" type="List"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+      <lightning:datatable keyField="id" columns="{!v.columns}" data="{!v.filteredData}" showRowNumberColumn="true" /><br/>
+    
+</aura:component>

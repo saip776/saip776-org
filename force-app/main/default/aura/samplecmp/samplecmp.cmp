@@ -1,0 +1,555 @@
+<aura:component 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+    <!-- controller="CommissionDetailCtrl"  this tag is for controller -->
+    
+    <aura:attribute name="req" type="string" />
+    <aura:attribute name="inv" type="string" />
+    <aura:attribute name="OrCustNo" type="string" />
+    <aura:attribute name="CustNo" type="string" />
+    <aura:attribute name="Cust" type="string" />
+    <aura:attribute name="Curr" type="string" />
+    <aura:attribute name="OrSO" type="string" />
+    <aura:attribute name="InvDate" type="date" />
+    <aura:attribute name="SiteNo" type="string" />
+    <aura:attribute name="PONo" type="string" />
+    <aura:attribute name="Currency" type="string" />
+    <aura:attribute name="InvTotal" type="string" />
+    
+    <aura:attribute name="ClaimComp" type="string" />
+    <aura:attribute name="ClaimComp1" type="string" />
+    <aura:attribute name="ClaimLoc" type="string" />
+ <!--   <aura:attribute name="ClaimComments" type="ICS_Commission__c" /> this was commented since object is not there -->
+    <aura:attribute name="ClaimCity" type="string" />
+    <aura:attribute name="ClaimCountry" type="string" />
+    
+    <aura:attribute name="CliDetails" type="list" />
+   <!-- <aura:handler name="init" action="{!c.doInit}" value="{!this}"/> -->
+    <aura:attribute name="disabled" type="boolean" default="false" />
+    <aura:attribute name="EditShow" type="boolean" default="true" />
+    <aura:attribute name="SaveShow" type="boolean" default="false" />
+    <aura:attribute name="CancelShow" type="boolean" default="false" />
+    
+    <aura:attribute name="EditShow1" type="boolean" default="true" />
+    <aura:attribute name="SaveShow1" type="boolean" default="false" />
+    <aura:attribute name="CancelShow1" type="boolean" default="false" />
+    
+    <aura:attribute name="editAccId" type="id"/>
+    <aura:attribute name="viewAccId" type="id"/>
+    <aura:attribute name="isEdit" type="boolean"/>
+	<aura:attribute name="isView" type="boolean"/>
+    
+     <aura:attribute name="ComRecordId" type="Id"/>
+	<!-- <aura:attribute name="userObj" type="ICS_Commission__c"/> -->
+    
+     <aura:attribute name="ClaimDet" type="string" />
+    
+    <lightning:messages />
+    <div class="slds-box slds-theme_shade slds-theme_default">
+        <div class="slds-brand-band slds-brand-band_large">
+            <article class="slds-card">
+                <div class="slds-box slds-theme_shade slds-theme_default">
+                <span class="slds-text-heading_small "> <b>Commission Detail</b></span>
+                <br/>
+                <lightning:layout class="slds-page-header slds-page-header--object-home" horizontalAlign="space">
+                    <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b>Source: </b> 
+                                </td>
+                                <td>
+                                    Sales
+                                </td>
+                            </tr>
+                            <br/>            
+                            <tr>
+                                <td>
+                                    <b>Requisition Number: </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.req}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Requisition_Number__c}"/> 
+                                    </aura:iteration> 
+                                </td>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b> Invoice Number: </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.inv}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Invoice_Number__c}"/> 
+                                    </aura:iteration> 
+                                </td>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b> Oracle Customer Number:</b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.OrCustNo}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Oracle_Customer_Number__c}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b> Customer Number: </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.CustNo}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Customer_Number__c}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b>Customer: </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.Cust}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Customer_Name__c}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                        </table> 
+                    </lightning:layoutItem>     
+                    
+                    <lightning:layoutItem flexibility="auto" padding="around-small" size="4">
+                        <table>
+                            
+                            <tr>
+                                <td>
+                                    <b>Order SO:  </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.OrSO}" var="a" >
+                                        <ui:outputText value=""/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b>Invoice Date:  </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.InvDate}" var="a" >
+                                        <!-- <ui:outputText value="{!a.ICS_Invoice_Date__c}"/>  -->
+                                        <ui:outputDate value="{!a.ICS_Invoice_Date__c}"/>
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b>Site No: </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.SiteNo}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Site_Number__c}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b>PO No:</b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.PONo}" var="a" >
+                                        <ui:outputText value="{!a.ICS_PO_Number__c}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b>Invoice Total:</b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.Currency}" var="a" >
+                                        <ui:outputText value="{!a.ICS_Invoice_Total__c}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr>
+                            <br/>
+                            <tr>
+                                <td>
+                                    <b>Currency: </b>
+                                </td>
+                                <td>
+                                    <aura:iteration items="{!v.Curr}" var="a" >
+                                        <ui:outputText value="{!a.CurrencyIsoCode}"/> 
+                                    </aura:iteration>
+                                </td>
+                            </tr> 
+                        </table>
+                        
+                    </lightning:layoutItem>
+                </lightning:layout>   
+                </div>
+                
+                
+                <br></br><br></br>
+                
+                
+                
+                <div class="slds-box slds-theme_shade slds-theme_default">
+                    <lightning:layout>
+                        <table>
+                            <tr>
+                                <td><lightning:layoutItem>
+                            <span class="slds-text-heading_small"><b>End User Details</b></span>
+                        </lightning:layoutItem></td>
+                                
+                                <td><lightning:layoutItem >
+                            <aura:if isTrue="{!v.EditShow}">
+                                
+      <lightning:button aura:id="button1" variant="brand" label="Edit" title="Edit" onclick="{! c.handleEditClick }" />	&nbsp;&nbsp;
+                               
+                            </aura:if>
+                            <lightning:layoutItem>
+                            <aura:if isTrue="{!v.SaveShow}">
+                                <lightning:button aura:id="button2" variant="brand"  label="Save" title="Save" onclick="{! c.handleSaveClick }" />&nbsp;&nbsp;
+                            </aura:if>
+                                
+                            
+                        </lightning:layoutItem>
+                        </lightning:layoutItem>
+                                </td>
+                                <td>
+                                <lightning:layoutItem>
+                            <aura:if isTrue="{!v.CancelShow}">
+                                <lightning:button aura:id="button3" variant="brand"  label="Cancel" title="Cancel" onclick="{! c.handleCancelClick }" />&nbsp;&nbsp;
+                            </aura:if>
+                        </lightning:layoutItem>
+                                </td>
+                            </tr>
+                        </table>
+                    </lightning:layout>
+                        
+                    <!-- <h1 class="slds-text-align_center">End User Details</h1><br/>    disabled="{!v.disabled}"    -->
+                    <br/> <br/>
+                     <lightning:recordEditForm aura:id="recordViewForm" 
+                                     recordId="{!v.ComRecordId}"
+                                     objectApiName="ICS_Commission__c">
+                    <lightning:layout class="slds-page-header slds-page-header--object-home" horizontalAlign="space">
+                        <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+                           
+                            <table>
+                                
+                                <tr>
+                                    <td>
+                                        <b>Claim Company:</b>
+                                    </td>
+                                    <td>
+                                        <aura:iteration items="{!v.ClaimComp}" var="a" >
+                                            <aura:if isTrue="{!v.EditShow}">
+                                                <ui:outputText value="{!a.ICS_Claim_Company__c}"/> 
+                                            </aura:if>
+                                            <aura:if isTrue="{!v.SaveShow}">
+                                                <ui:inputText  aura:id="claimCompInp"
+                                                              value="{!a.ICS_Claim_Company__c}"/>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </td>
+                                </tr> 
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Claim Location:</b>
+                                    </td>
+                                    <td>
+                                        <aura:iteration items="{!v.ClaimLoc}" var="a" >
+                                            <aura:if isTrue="{!v.EditShow}">
+                                                <ui:outputText value="{!a.ICS_Claim_State__c}"/> 
+                                            </aura:if>
+                                            <aura:if isTrue="{!v.SaveShow}">
+                                             <lightning:inputField fieldName="ICS_Claim_State__c" 
+                                                                   aura:id="claimStateInp" 
+                                                                   variant = "label-hidden" />
+                                            </aura:if>
+                                          </aura:iteration>
+                                    </td>
+                                </tr> 
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Comments:</b>
+                                    </td>
+                                    <td>
+                                        <aura:iteration items="{!v.ClaimComments}" var="a" >
+                                            <aura:if isTrue="{!v.EditShow}">
+                                                <ui:outputText value="{!a.ICS_Comments__c}"/> 
+                                            </aura:if>
+                                            <aura:if isTrue="{!v.SaveShow}">
+                                                <ui:inputTextArea  aura:id="claimCommentsInp" rows="4"
+                                                              value="{!a.ICS_Comments__c}"/>
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </td>
+                                </tr> 
+                            </table>
+                            
+                        </lightning:layoutItem>
+                        <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+                            
+                            <table>
+                                
+                                <tr>
+                                    <td>
+                                        <b>Claim City:</b>
+                                    </td>
+                                    <td>
+                                        <aura:iteration items="{!v.ClaimCity}" var="a" >
+                                            <aura:if isTrue="{!v.EditShow}">
+                                                <ui:outputText value="{!a.ICS_Claim_City__c}"/> 
+                                            </aura:if>
+                                            <aura:if isTrue="{!v.SaveShow}">
+                                             <lightning:inputField fieldName="ICS_Claim_City__c" 
+                                                                   aura:id="claimCityInp" 
+                                                                   variant = "label-hidden" />
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Claim Country:</b>
+                                    </td>
+                                    <td>
+                                        <aura:iteration items="{!v.ClaimCountry}" var="a" >
+                                            <aura:if isTrue="{!v.EditShow}">
+                                                <ui:outputText value="{!a.ICS_Claim_Country__c}"/> 
+                                            </aura:if>
+                                            <aura:if isTrue="{!v.SaveShow}">
+                                             <lightning:inputField fieldName="ICS_Claim_Country__c" 
+                                                                   aura:id="claimCountryInp" 
+                                                                   variant = "label-hidden" />
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </td>
+                                </tr>
+                            </table>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                    </lightning:recordEditForm>
+                </div> <br></br><br></br>
+                <!-- test code for Inputfiled 
+              
+                
+        <lightning:recordEditForm aura:id="recordViewForm" 
+                                     recordId="{!v.userObj.Id}"
+                                     
+                                     objectApiName="ICS_Commission__c">
+            <lightning:messages />
+            <lightning:inputField fieldName="ICS_Claim_State__c" />
+            
+            <!-Picklist->
+            
+            </lightning:recordEditForm>  -->
+   <!-- Iteration of Claim Details -->
+                <div class="slds-box slds-theme_shade slds-theme_default">
+                   <span class="slds-text-heading_small"><b>Claim Details</b></span><br/>
+                    <aura:iteration items="{!v.ClaimDet}" var="b" >
+                       <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small"> 
+                        <span class="slds-text-heading_small"><b>{!b.Name}</b></span><br/>     
+                           <!--Start
+                                <lightning:recordEditForm aura:id="recordViewForm" 
+                                     recordId="{!v.ComRecordId}"
+                                     objectApiName="ICS_Commission__c">-->
+                    <lightning:layout class="slds-page-header slds-page-header--object-home" horizontalAlign="space">
+                        <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+                           
+                            <table>
+                                
+                                <tr>
+                                    <td>
+                                        <b>Claim Name:</b>
+                                    </td>
+                                    <td>
+                                        <ui:outputText value="{!b.Name}"/> 
+                                    </td>
+                                </tr> 
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Product Code:</b>
+                                    </td>
+                                    <td>
+                                   <ui:outputText value="{!b.ICS_Product_Class__c}"/> 
+                                    </td>
+                                </tr> 
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>List Price:</b>
+                                    </td>
+                                    <td>
+                                                <ui:outputText value="{!b.ICS_List_Price__c}"/> 
+                                    </td>
+                                </tr> 
+                            </table>
+                            
+                        </lightning:layoutItem>
+                        <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+                            
+                            <table>
+                                
+                                <tr>
+                                    <td>
+                                        <b>Commission Percent:</b>
+                                    </td>
+                                    <td>
+                                                <ui:outputText value="{!b.ICS_Agent_Percentage__c}"/> 
+                                        
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Commission Amount:</b>
+                                    </td>
+                                    <td>
+                                                <ui:outputText value="{!b.ICS_Agent_Commission__c}"/> 
+                                        
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Claim Company:</b>
+                                    </td>
+                                    <td>
+                                                <ui:outputText value="{!b.ICS_Claim_Company__c}"/> 
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+                            
+                            <table>
+                                
+                                <tr>
+                                    <td>
+                                        <b>REP:</b>
+                                    </td>
+                                    <td>
+                                                <ui:outputText value="{!b.ICS_Rep__r.Name}"/> 
+                                        
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>RSM:</b>
+                                    </td>
+                                    <td>
+                                                <ui:outputText value="{!b.ICS_RSM__r.Name}"/> 
+                                        
+                                    </td>
+                                </tr>
+                                <br/>
+                                <tr>
+                                    <td>
+                                        <b>Claim Status:</b>
+                                    </td>
+                                    <td>
+                                     <ui:outputText value="{!b.ICS_Commission_Status__c}"/> 
+                                    </td>
+                                </tr>
+                            </table>
+                        </lightning:layoutItem>
+                        
+                    </lightning:layout></div>
+                            </aura:iteration>
+                       
+                </div>
+                   
+               
+                <br></br><br></br>
+                <div class="slds-box slds-theme_shade slds-theme_default">
+                    <span class="slds-text-heading_small"><b>Claim Details</b></span>
+                    <!--<h1 class="slds-text-align_center">Commission</h1><br/> -->
+                    <br/><br/>
+                    
+                    <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer">
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="slds-truncate"><b>NAME</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>PRODUCT CODE</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>LIST PRICE</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>COMMISSION PERCENT</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>COMMISSION AMOUNT</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>REP</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>RSM</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>COMPANY</b></span></th>
+                                <th scope="col"><span class="slds-truncate"><b>STATUS</b></span></th>
+                            	<th scope="col"><span class="slds-truncate"><b>ACTION</b></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.CliDetails}" var="a">
+                                <tr>
+                                    <td>{!a.Name}</td>
+                                    <td>{!a.ICS_Product_Class__c}</td>
+                                    <td>{!a.ICS_List_Price__c}</td>
+                                    <td>{!a.ICS_Agent_Percentage__c}</td>
+                                    <td>{!a.ICS_Agent_Commission__c}</td>
+                                    <td>{!a.ICS_Rep__r.Name}</td>
+                                    <td>{!a.ICS_RSM__r.Name}</td>
+                                    <td>{!a.ICS_Claim_Company__c}</td>
+                                    <td>{!a.ICS_Commission_Status__c}</td>
+                                    <td>Buttons Will be displayed here
+                                       
+                                    <aura:if isTrue="{!v.EditShow1}">
+                                <lightning:button aura:id="button4" variant="brand" label="Edit" title="Edit" onclick="{! c.handleEditClick1 }" />	
+                            </aura:if>
+                            
+                      
+                       
+                            <aura:if isTrue="{!v.SaveShow1}">
+                                <lightning:button aura:id="button5" variant="brand"  label="Save" title="Save" onclick="{! c.handleSaveClick1 }" />
+                            </aura:if>
+                            
+                       
+                        
+                            <aura:if isTrue="{!v.CancelShow1}">
+                                <lightning:button aura:id="button6" variant="brand"  label="Cancel" title="Cancel" onclick="{! c.handleCancelClick1 }" />
+                            </aura:if>
+                            
+                                   <!--
+                                    <button type="button" onclick="{!c.edit}" id="{!a.Id}">Edit</button>&nbsp;&nbsp;
+ -->
+                                    {!a.Id}
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                    <br></br><br></br>  
+                    
+                    <!--
+        <lightning:layout class="slds-page-header slds-page-header-object-home" horizontalAlign="space">
+            <lightning:layoutItem  flexibility="auto" padding="around-small" size="4">
+             <p class="slds-p-horizontal-small">
+                   <b>CLI NAME: </b>
+                    <aura:iteration items="{!v.CliName}" var="a" >
+                        <ui:outputText value="{!a.Name}"/><br/> 
+                    </aura:iteration>
+                </p>
+            </lightning:layoutItem>
+        </lightning:layout> -->
+                </div>
+            </article>
+        </div>
+    </div>
+</aura:component>

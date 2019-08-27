@@ -1,0 +1,18 @@
+<aura:component controller="DateTimeSave" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+
+    <aura:attribute name="account" type="Account" default="{'sobjectType' : 'Account',
+                                                           'Name' : '',
+                                                           'DateTime__c' : '',
+                                                           'Type__c' : 'Prospect'}"/>
+    
+    
+    <lightning:card title="Account Form" iconName="standard:account">
+    	<div class="slds-p-around_small">
+            <lightning:input name="Name" label="Name" aura:id="nameId" value="{!v.account.Name}"/>
+            <lightning:input name="Name" type="datetime-local" label="Date Time" aura:id="dateTimeId" value="{!v.account.DateTime__c}"/>
+            <lightning:input name="Name" label="Type" value="{!v.account.Type__c}" aura:id="typeId"/>
+            
+            <lightning:button label="Save" onclick="{!c.save}"/>
+        </div>
+    </lightning:card>
+</aura:component>

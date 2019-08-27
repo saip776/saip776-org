@@ -1,0 +1,102 @@
+<aura:component implements="force:appHostable" controller="contactRegistrationController">
+    
+	<aura:attribute name="newContact" type="Contact"
+        default="{ 'sobjectType': 'Contact'}"/>
+    
+    <!-- PAGE HEADER -->
+    <div class="slds-page-header" role="banner">
+      <div class="slds-grid">
+        <div class="slds-col">
+          <p class="slds-text-heading--label">Contact Input Form Practice</p>
+          <h1 class="slds-text-heading--medium">Enter details to Create Contact</h1>
+        </div>
+      </div>
+    </div>
+    <!-- / PAGE HEADER -->
+
+    <!-- NEW EXPENSE FORM -->
+    <div class="slds-col slds-col--padded slds-p-top--large">
+ 
+  <div aria-labelledby="newcontactform">
+
+  <!-- BOXED AREA -->
+  <fieldset class="slds-box slds-theme--default slds-container--small">
+
+    <legend id="newexpenseform" class="slds-text-heading--small 
+      slds-p-vertical--medium">
+      Add Contact
+    </legend>
+ 
+    <!-- CREATE NEW EXPENSE FORM -->
+    <form class="slds-form--stacked">
+        <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+              <ui:inputText aura:id="fstname" label="First Name"
+                  class="slds-input"
+                  labelClass="slds-form-element__label"
+                  value="{!v.newContact.FirstName}"
+                  required="true"/>
+          </div></div>
+      <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+              <ui:inputText aura:id="lstname" label="Last Name"
+                  class="slds-input"
+                  labelClass="slds-form-element__label"
+                  value="{!v.newContact.LastName}"
+                  required="true"/>
+          </div>
+     </div>
+    
+         <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+              <ui:inputText aura:id="email" label="Email"
+                  class="slds-input"
+                  labelClass="slds-form-element__label"
+                  value="{!v.newContact.Email}"
+                  required="true"/>
+          </div>
+     </div>
+    <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+                    
+       <lightning:input type="number" aura:id="curr" label="Phone"
+                  class="slds-input"
+                  labelClass="slds-form-element__label"
+                  value="{!v.newContact.OtherPhone}"
+                  required="true"/>
+          </div></div>
+      
+       <lightning:input type="Date" 
+                        label="Birthdate" 
+                        aura:id="Birthdate" 
+                        value="{!v.newContact.Birthdate}" required="true"
+                        maxlength = "11" />
+        
+        <lightning:input type="datetime-local" 
+                         aura:id="birthdatetime"
+                         label="Birthday  Time"
+                         name="datetime" 
+                         value="{!v.newContact.Birthday_Time__c}" required="true" />
+         <p><lightning:formattedNumber value="12.34" style="currency" currencyCode="CNY" aura:id="curr"/></p>
+
+         {!$Locale.currencyCode}
+
+          
+      <div class="slds-form-element">
+          <ui:button label="Submit"
+              class="slds-button slds-button--brand"
+              press="{!c.clickCreateContact}"/>
+      </div>
+        
+    </form>
+    <!-- / CREATE NEW EXPENSE FORM -->
+
+  </fieldset>
+  <!-- / BOXED AREA -->
+
+</div>
+<!-- / CREATE NEW EXPENSE -->
+
+    </div>
+    <!-- / NEW EXPENSE FORM -->
+</aura:component>
