@@ -2,7 +2,7 @@ public class Acclist1 {
 @AuraEnabled
     public Static list<account> getAccount(){
         
-        
+        // testing the master branch
         return [select id,Name,AnnualRevenue,createddate from account where NumberofLocations__c !=null  order by NumberofLocations__c asc ];
        
     }
