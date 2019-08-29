@@ -8,6 +8,7 @@ public class Acclist1 {
     }
     @AuraEnabled
     public static Account getAccount(Id accountId) {
+        
         // Perform isAccessible() checks here
         return [SELECT Name, BillingCity, BillingState FROM Account WHERE Id = :accountId];
     }
