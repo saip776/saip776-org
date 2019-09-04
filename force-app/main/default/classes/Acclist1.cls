@@ -4,7 +4,7 @@ public class Acclist1 {
         
         // testing the master branch jai kishore
         return [select id,Name,AnnualRevenue,createddate from account where NumberofLocations__c !=null  order by NumberofLocations__c asc ];
-       
+       //etst
     }
     @AuraEnabled
     public static Account getAccount(Id accountId) {
